@@ -6,7 +6,8 @@ LIBFT = ./srcs/libft
 
 # Fichiers sources de so_long
 SRCS = 	so_long.c \
-		srcs/so_long/map_validity.c
+		srcs/so_long/map_validity.c \
+		srcs/so_long/map_init.c
 
 # Objets (fichiers .o correspondants aux fichiers sources)
 OBJS = $(SRCS:.c=.o)

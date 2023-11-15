@@ -1,23 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_validity.c                                     :+:      :+:    :+:   */
+/*   map_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvan-pee <mvan-pee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/15 11:23:26 by mvan-pee          #+#    #+#             */
-/*   Updated: 2023/11/15 11:54:23 by mvan-pee         ###   ########.fr       */
+/*   Created: 2023/11/15 11:55:04 by mvan-pee          #+#    #+#             */
+/*   Updated: 2023/11/15 11:58:32 by mvan-pee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/so_long.h"
 
-int map_validity(char *map)
+void map_init(t_map *map)
 {
-    int fd;
-
-    fd = open(map, O_RDONLY);
-    if(fd != 3)
-        return (ft_printf_fd(2, "Error\nCannot read file.\n"));
-    return 0;
+    map->player = 0;
+    map->exit = 0;
+    map->coin = 0;
 }
