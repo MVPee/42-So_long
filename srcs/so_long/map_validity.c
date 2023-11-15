@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   map_validity.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvan-pee <mvan-pee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/15 11:19:32 by mvan-pee          #+#    #+#             */
-/*   Updated: 2023/11/15 11:46:56 by mvan-pee         ###   ########.fr       */
+/*   Created: 2023/11/15 11:23:26 by mvan-pee          #+#    #+#             */
+/*   Updated: 2023/11/15 11:47:42 by mvan-pee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/so_long.h"
+#include "../../includes/so_long.h"
 
-int	main(int ac, char **av)
+int map_validity(char *map)
 {
-	(void)av;
-	if (ac != 2)
-	{
-		return (ft_printf_fd(2, "Error\nTry: ./so_long maps/map.ber\n"));
-	}
-	if (map_validity(av[1]))
-		return (1);
-	return (0);
+    int fd;
+
+    fd = open(map, O_RDONLY);
+    if(fd != 3)
+        return (ft_printf_fd(2, "Error\nCannot read file.\n"));
+    return 0;
 }
