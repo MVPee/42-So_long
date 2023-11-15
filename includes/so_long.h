@@ -6,7 +6,7 @@
 /*   By: mvan-pee <mvan-pee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:20:15 by mvan-pee          #+#    #+#             */
-/*   Updated: 2023/11/15 11:55:59 by mvan-pee         ###   ########.fr       */
+/*   Updated: 2023/11/15 14:01:05 by mvan-pee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,13 @@
 
 typedef struct map
 {
-    int exit;
-    int player;
-    int coin;
-}       t_map;
+	int		player;
+	int		exit;
+	int		coin;
+	size_t	len;
+}			t_map;
 
-int map_validity();
-void map_init();
+int			map_validity(char *file, t_map *map);
+void		map_init(t_map *map);
 
 #endif

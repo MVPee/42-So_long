@@ -6,7 +6,7 @@
 /*   By: mvan-pee <mvan-pee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:55:04 by mvan-pee          #+#    #+#             */
-/*   Updated: 2023/11/15 11:58:32 by mvan-pee         ###   ########.fr       */
+/*   Updated: 2023/11/15 14:00:48 by mvan-pee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,4 +17,5 @@ void map_init(t_map *map)
     map->player = 0;
     map->exit = 0;
     map->coin = 0;
+    map->len = 0;
 }
