@@ -6,7 +6,7 @@
 /*   By: mvan-pee <mvan-pee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:19:32 by mvan-pee          #+#    #+#             */
-/*   Updated: 2023/11/16 13:56:11 by mvan-pee         ###   ########.fr       */
+/*   Updated: 2023/11/16 14:33:55 by mvan-pee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,28 +26,11 @@
 // 	return (1);
 // }
 
-static int mlx_test(t_sprite *sprite, char **map_split)
+static void map_display(void *mlx, void *window, t_sprite *sprite, char **map_split)
 {
-    void    *mlx;
-    void    *window;
     int x;
     int y;
 
-    mlx = mlx_init();
-    y = 0;
-    while(map_split[y])
-        y++;
-    window = mlx_new_window(mlx, ft_strlen(map_split[0]) * 100, y * 100, "So long");
-    sprite_init(mlx, sprite);
-    if (!sprite->coin || !sprite->wall || !sprite->ground || !sprite->player || !sprite->exit)
-    {
-        mlx_destroy_window(mlx, window);
-        return 1;
-    }
-	// mlx_put_image_to_window(mlx, window, sprite->exit, 0, 0);
-    // mlx_put_image_to_window(mlx, window, sprite->ground, 0, 100);
-	// mlx_put_image_to_window(mlx, window, sprite->player, 0, 200);
-    // mlx_put_image_to_window(mlx, window, sprite->wall, 0, 300);
     x = 0;
     y = 0;
     while(map_split[y])
@@ -69,7 +52,26 @@ static int mlx_test(t_sprite *sprite, char **map_split)
         x = 0;
         y++;
     }
-    ft_printf("x %d, y %d\n", x, y);
+}
+
+static int mlx_test(t_sprite *sprite, char **map_split)
+{
+    void    *mlx;
+    void    *window;
+    int y;
+
+    mlx = mlx_init();
+    y = 0;
+    while(map_split[y])
+        y++;
+    window = mlx_new_window(mlx, ft_strlen(map_split[0]) * 100, y * 100, "So long");
+    sprite_init(mlx, sprite);
+    if (!sprite->coin || !sprite->wall || !sprite->ground || !sprite->player || !sprite->exit)
+    {
+        mlx_destroy_window(mlx, window);
+        return 1;
+    }
+    map_display(mlx, window, sprite, map_split);
     mlx_loop(mlx);
 
     return 0;
