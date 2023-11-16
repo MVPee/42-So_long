@@ -6,7 +6,7 @@
 /*   By: mvan-pee <mvan-pee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:19:32 by mvan-pee          #+#    #+#             */
-/*   Updated: 2023/11/16 09:51:57 by mvan-pee         ###   ########.fr       */
+/*   Updated: 2023/11/16 10:37:34 by mvan-pee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	main(int ac, char **av)
 		return (ft_printf_fd(2, "Error\nTry: ./so_long maps/map.ber\n"));
 	temp = map_parsing(av[1]);
 	if(!temp)
-		return (ft_printf_fd(2, "Error\nMap is empty.\n"));
+		return (1);
 	map_split = ft_split(temp, '\n');
 	free(temp);
 	if (!map_split)

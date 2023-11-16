@@ -1,17 +1,20 @@
 NAME = so_long
 
 LIBFT = srcs/libft
+MLX_PATH = srcs/minilibx
+MLX = $(MLX_PATH)
+MLX_INC = $(MLX_PATH)
 
 SRCS = 	so_long.c \
 		srcs/so_long/map_parsing.c \
 		srcs/so_long/map_init.c \
-		srcs/so_long/map_check.c
+		srcs/so_long/map_check.c \
+		srcs/so_long/map_path_check.c
 
 OBJS = $(SRCS:.c=.o)
 
-CFLAGS = -Wall -Wextra -Werror
-
-LDFLAGS = -L$(LIBFT) -lft
+CFLAGS = -Wall -Wextra -Werror -I$(LIBFT) -I$(MLX_INC)
+LDFLAGS = -L$(LIBFT) -lft -L$(MLX) -lmlx -framework OpenGL -framework AppKit
 
 $(LIBFT)/libft.a:
 	$(MAKE) -C $(LIBFT)

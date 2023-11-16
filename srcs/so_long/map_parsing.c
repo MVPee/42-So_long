@@ -6,7 +6,7 @@
 /*   By: mvan-pee <mvan-pee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 08:08:31 by mvan-pee          #+#    #+#             */
-/*   Updated: 2023/11/16 09:45:01 by mvan-pee         ###   ########.fr       */
+/*   Updated: 2023/11/16 10:38:00 by mvan-pee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ char	*map_parsing(char *file)
 	if (!line)
 	{
 		free(map);
+		ft_printf_fd(2, "Error\nEmpty map.\n");
 		return (NULL);
 	}
 	while (line)
