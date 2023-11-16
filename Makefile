@@ -7,9 +7,10 @@ MLX_INC = $(MLX_PATH)
 
 SRCS = 	so_long.c \
 		srcs/so_long/map_parsing.c \
-		srcs/so_long/map_init.c \
+		srcs/so_long/game_init.c \
 		srcs/so_long/map_check.c \
-		srcs/so_long/map_path_check.c
+		srcs/so_long/map_path_check.c \
+		srcs/so_long/sprite_init.c
 
 OBJS = $(SRCS:.c=.o)
 
