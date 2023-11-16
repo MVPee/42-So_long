@@ -6,7 +6,7 @@
 /*   By: mvan-pee <mvan-pee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:19:32 by mvan-pee          #+#    #+#             */
-/*   Updated: 2023/11/16 11:06:36 by mvan-pee         ###   ########.fr       */
+/*   Updated: 2023/11/16 13:28:20 by mvan-pee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int mlx_test(void)
 {
     void    *mlx;
     void    *window;
-    void    *image;
+    void    *coin, *wall, *player, *exit, *ground;
     int     img_width, img_height;
 
     // Initialisation de MLX
@@ -40,19 +40,24 @@ int mlx_test(void)
     window = mlx_new_window(mlx, 800, 600, "So long");
 
     // Chargement de l'image XPM
-    image = mlx_xpm_file_to_image(mlx, "rscs/coin.xpm", &img_width, &img_height);
+    coin = mlx_xpm_file_to_image(mlx, "rscs/coin.xpm", &img_width, &img_height);
+    wall = mlx_xpm_file_to_image(mlx, "rscs/wall.xpm", &img_width, &img_height);
+    ground = mlx_xpm_file_to_image(mlx, "rscs/ground.xpm", &img_width, &img_height);
+    player = mlx_xpm_file_to_image(mlx, "rscs/player.xpm", &img_width, &img_height);
+    exit = mlx_xpm_file_to_image(mlx, "rscs/exit.xpm", &img_width, &img_height);
 
     // Vérifier si l'image a été chargée correctement
-    if (!image)
+    if (!coin || !wall || !ground || !player || !exit)
     {
         mlx_destroy_window(mlx, window);
         return 1;
     }
 
     // Affichage de l'image dans la fenêtre
-	mlx_put_image_to_window(mlx, window, image, 0, 0); // 0, 0 sont les coordonnées x, y
-    mlx_put_image_to_window(mlx, window, image, 0, 100); // 0, 0 sont les coordonnées x, y
-	mlx_put_image_to_window(mlx, window, image, 100, 100); // 0, 0 sont les coordonnées x, y
+	mlx_put_image_to_window(mlx, window, exit, 0, 0); // 0, 0 sont les coordonnées x, y
+    mlx_put_image_to_window(mlx, window, ground, 0, 100); // 0, 0 sont les coordonnées x, y
+	mlx_put_image_to_window(mlx, window, player, 0, 200); // 0, 0 sont les coordonnées x, y
+    mlx_put_image_to_window(mlx, window, wall, 0, 300); // 0, 0 sont les coordonnées x, y
 
     // Démarrage de la boucle d'événements MLX
     mlx_loop(mlx);
@@ -62,7 +67,7 @@ int mlx_test(void)
 
 int	main(int ac, char **av)
 {
-	t_map	map;
+	t_game	game;
 	char	**map_split;
 	char 	*temp;
 
@@ -75,8 +80,8 @@ int	main(int ac, char **av)
 	free(temp);
 	if (!map_split)
 		return (ft_printf_fd(2, "Error\nSplit error.\n"));
-	map_init(&map);
-	if (map_check(map_split, &map))
+	game_init(&game);
+	if (map_check(map_split, &game))
 		return (1);
 	ft_printf("Map is correct!\n");
 	//system("leaks so_long");

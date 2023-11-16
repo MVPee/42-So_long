@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_init.c                                         :+:      :+:    :+:   */
+/*   game_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvan-pee <mvan-pee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:55:04 by mvan-pee          #+#    #+#             */
-/*   Updated: 2023/11/15 14:00:48 by mvan-pee         ###   ########.fr       */
+/*   Updated: 2023/11/16 13:26:56 by mvan-pee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/so_long.h"
 
-void map_init(t_map *map)
+void game_init(t_game *game)
 {
-    map->player = 0;
-    map->exit = 0;
-    map->coin = 0;
-    map->len = 0;
+    game->player = 0;
+    game->exit = 0;
+    game->coin = 0;
+    game->len = 0;
 }

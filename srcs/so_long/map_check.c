@@ -6,7 +6,7 @@
 /*   By: mvan-pee <mvan-pee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 08:24:33 by mvan-pee          #+#    #+#             */
-/*   Updated: 2023/11/16 09:50:04 by mvan-pee         ###   ########.fr       */
+/*   Updated: 2023/11/16 13:26:48 by mvan-pee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static int	map_line_check(char *line, size_t len, int nbTable, int count)
 	return (0);
 }
 
-static int map_item_check(char *line, t_map *map)
+static int map_item_check(char *line, t_game *game)
 {
     int i;
 
@@ -42,11 +42,11 @@ static int map_item_check(char *line, t_map *map)
     while(line[i])
     {
         if(line[i] == 'P')
-            map->player += 1;
+            game->player += 1;
         else if(line[i] == 'C')
-            map->coin += 1;
+            game->coin += 1;
         else if(line[i] == 'E')
-            map->exit += 1;
+            game->exit += 1;
         else if(line[i] != '1' && line[i] != '0' && line[i] != '\n')
             return (ft_printf_fd(2, "Error\nInvalid character. C %d\n", i + 1));
         i++;
@@ -54,7 +54,7 @@ static int map_item_check(char *line, t_map *map)
     return (0);
 }
 
-int	map_check(char **map_split, t_map *map)
+int	map_check(char **map_split, t_game *game)
 {
 	int	count;
 	int	nbTable;
@@ -69,11 +69,11 @@ int	map_check(char **map_split, t_map *map)
 	{
 		if (map_line_check(map_split[count], len, nbTable, count))
 			return (1);
-        if (map_item_check(map_split[count], map))
+        if (map_item_check(map_split[count], game))
             return (1);
 		count++;
 	}
-    if(map->player != 1 || map->coin <= 0 || map->exit != 1)
-        return (ft_printf_fd(2, "Error\nNumber of item is incorrect. P %d C %d E %d\n", map->player, map->coin, map->exit));
+    if(game->player != 1 || game->coin <= 0 || game->exit != 1)
+        return (ft_printf_fd(2, "Error\nNumber of item is incorrect. P %d C %d E %d\n", game->player, game->coin, game->exit));
 	return (0);
 }
