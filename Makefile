@@ -15,8 +15,8 @@ SRCS = 	so_long.c \
 
 OBJS = $(SRCS:.c=.o)
 
-CFLAGS = -Wall -Wextra -Werror -I$(LIBFT) -I$(MLX_INC)
-LDFLAGS = -L$(LIBFT) -lft -L$(MLX) -lmlx -framework OpenGL -framework AppKit
+CFLAGS = -Wall -Wextra -Werror -I$(LIBFT)
+LDFLAGS = -L$(LIBFT) -lft -lmlx -framework OpenGL -framework AppKit
 
 $(LIBFT)/libft.a:
 	$(MAKE) -C $(LIBFT)

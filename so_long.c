@@ -6,7 +6,7 @@
 /*   By: mvan-pee <mvan-pee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:19:32 by mvan-pee          #+#    #+#             */
-/*   Updated: 2023/11/16 14:35:56 by mvan-pee         ###   ########.fr       */
+/*   Updated: 2023/11/16 15:17:14 by mvan-pee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,13 @@
 // 	}
 // 	free(map_split);
 // 	return (1);
+// }
+
+// int game_process(int keycode, char **map_split)
+// {
+//     if(keycode == Z)
+//         ft_printf("%s\n", map_split[1]);
+//     return 0;
 // }
 
 static int mlx_test(t_sprite *sprite, char **map_split)
@@ -44,6 +51,7 @@ static int mlx_test(t_sprite *sprite, char **map_split)
         return 1;
     }
     map_display(mlx, window, sprite, map_split);
+    // mlx_hook(window, 2, 1L << 0, game_process, sprite);
     mlx_loop(mlx);
 
     return 0;
