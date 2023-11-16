@@ -1,7 +1,7 @@
 NAME = so_long
 
 LIBFT = srcs/libft
-MLX_PATH = srcs/minilibx
+MLX_PATH = ../../minilibx
 MLX = $(MLX_PATH)
 MLX_INC = $(MLX_PATH)
 
