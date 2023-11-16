@@ -6,7 +6,7 @@
 /*   By: mvan-pee <mvan-pee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:20:15 by mvan-pee          #+#    #+#             */
-/*   Updated: 2023/11/16 13:40:46 by mvan-pee         ###   ########.fr       */
+/*   Updated: 2023/11/16 14:35:39 by mvan-pee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,7 @@ char		*map_parsing(char *file);
 int			map_check(char **map_split, t_game *game);
 int			map_path_check(char **map_split);
 void		sprite_init(void *mlx, t_sprite *sprite);
+void		map_display(void *mlx, void *window, t_sprite *sprite,
+				char **map_split);
 
 #endif
