@@ -6,14 +6,18 @@
 /*   By: mvan-pee <mvan-pee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:19:32 by mvan-pee          #+#    #+#             */
-/*   Updated: 2023/11/20 15:21:53 by mvan-pee         ###   ########.fr       */
+/*   Updated: 2023/11/20 15:31:48 by mvan-pee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/so_long.h"
 
-static int end_game(t_data *data)
+static int end_game(t_data *data, char *message)
 {
+    int i;
+
+    ft_printf("%s\n", message);
+    i = 0;
     mlx_destroy_window(data->mlx, data->window);
     if(data->data_sprite.player)
         mlx_destroy_image(data->mlx, data->data_sprite.player);
@@ -25,6 +29,12 @@ static int end_game(t_data *data)
         mlx_destroy_image(data->mlx, data->data_sprite.wall);
     if(data->data_sprite.exit)
         mlx_destroy_image(data->mlx, data->data_sprite.exit);
+    while(data->map[i])
+    {
+        free(data->map[i]);
+        i++;
+    }
+    free(data->map);
     exit(EXIT_SUCCESS);
 }
 
@@ -32,7 +42,7 @@ static int movement(t_data *data, int y, int x)
 {
     int *pos = player_position(data->map);
     if (!pos)
-        return 0;
+        end_game(data, "Error\nWhere is Player?");
     if (data->map[pos[0] + y][pos[1] + x] && data->map[pos[0] + y][pos[1] + x] == '0')
     {
         data->map[pos[0]][pos[1]] = '0';
@@ -48,9 +58,8 @@ static int movement(t_data *data, int y, int x)
     {
         if(data->collected == data->coin)
         {
-            ft_printf("\nSUCCES\n");
             free(pos);
-            end_game(data);
+            end_game(data, "\nSUCCES");
         }
     }
     free(pos);
@@ -68,7 +77,9 @@ static int game_process(int keycode, t_data *data)
     else if(keycode == D || keycode == RIGHT)
         data->movement += movement(data, 0, 1);
     else if(keycode == ESC)
-        end_game(data);
+    {
+        end_game(data, "\nESC\n");
+    }
     if(data->movement)
     {
         map_display(data->mlx, data->window, data->data_sprite, data->map);
