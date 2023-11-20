@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvan-pee <mvan-pee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvpee <mvpee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:19:32 by mvan-pee          #+#    #+#             */
-/*   Updated: 2023/11/20 15:46:45 by mvan-pee         ###   ########.fr       */
+/*   Updated: 2023/11/20 18:14:59 by mvpee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,7 @@ static int game_process(int keycode, t_data *data)
     else if(keycode == D || keycode == RIGHT)
         data->movement += movement(data, 0, 1);
     else if(keycode == ESC)
-    {
         end_game(data, "\nESC");
-    }
     if(data->movement)
     {
         map_display(data->mlx, data->window, data->data_sprite, data->map);
