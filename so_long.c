@@ -6,7 +6,7 @@
 /*   By: mvan-pee <mvan-pee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:19:32 by mvan-pee          #+#    #+#             */
-/*   Updated: 2023/11/20 15:31:48 by mvan-pee         ###   ########.fr       */
+/*   Updated: 2023/11/20 15:33:38 by mvan-pee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ static int game_process(int keycode, t_data *data)
         data->movement += movement(data, 0, 1);
     else if(keycode == ESC)
     {
-        end_game(data, "\nESC\n");
+        end_game(data, "\nESC");
     }
     if(data->movement)
     {
