@@ -6,7 +6,7 @@
 /*   By: mvan-pee <mvan-pee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:19:32 by mvan-pee          #+#    #+#             */
-/*   Updated: 2023/11/20 15:33:38 by mvan-pee         ###   ########.fr       */
+/*   Updated: 2023/11/20 15:46:45 by mvan-pee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,10 @@
 static int end_game(t_data *data, char *message)
 {
     int i;
-
-    ft_printf("%s\n", message);
+    if (ft_strncmp(message, "closeNotification:", ft_strlen(message)) == 0)
+        ft_printf("\nCLOSE\n");
+    else
+        ft_printf("%s\n", message);
     i = 0;
     mlx_destroy_window(data->mlx, data->window);
     if(data->data_sprite.player)
