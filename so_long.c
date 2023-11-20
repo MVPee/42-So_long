@@ -6,7 +6,7 @@
 /*   By: mvan-pee <mvan-pee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:19:32 by mvan-pee          #+#    #+#             */
-/*   Updated: 2023/11/20 12:35:37 by mvan-pee         ###   ########.fr       */
+/*   Updated: 2023/11/20 12:36:39 by mvan-pee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ static int movement(t_data *data, int y, int x)
         }
     }
     free(pos);
-    map_display(data->mlx, data->window, data->data_sprite, data->map);
     return (1);
 }
 
@@ -55,6 +54,7 @@ static int game_process(int keycode, t_data *data)
         {
             exit(0);
         }
+    map_display(data->mlx, data->window, data->data_sprite, data->map);
     ft_printf("Nb of movement: %d\n", data->movement);
     return 0;
 }
