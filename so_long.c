@@ -6,67 +6,90 @@
 /*   By: mvan-pee <mvan-pee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:19:32 by mvan-pee          #+#    #+#             */
-/*   Updated: 2023/11/16 15:17:14 by mvan-pee         ###   ########.fr       */
+/*   Updated: 2023/11/20 12:09:43 by mvan-pee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/so_long.h"
 
-// static int	free_map_split(char ***map_split)
-// {
-// 	int	i;
+static int movement(t_data *data, int y, int x)
+{
+    int *pos = player_position(data->map);
+    if (!pos)
+        return 0;
+    if (data->map[pos[0] + y][pos[1] + x] && data->map[pos[0] + y][pos[1] + x] == '0')
+    {
+        data->map[pos[0]][pos[1]] = '0';
+        data->map[pos[0] + y][pos[1] + x] = 'P';
+    }
+    if (data->map[pos[0] + y][pos[1] + x] && data->map[pos[0] + y][pos[1] + x] == 'C')
+    {
+        data->map[pos[0]][pos[1]] = '0';
+        data->map[pos[0] + y][pos[1] + x] = 'P';
+        data->collected++;
+    }
+    if (data->map[pos[0] + y][pos[1] + x] && data->map[pos[0] + y][pos[1] + x] == 'E')
+    {
+        if(data->collected == data->coin)
+        {
+            free(pos);
+            exit(0);
+        }
+    }
+    free(pos);
+    map_display(data->mlx, data->window, data->data_sprite, data->map);
+    return (1);
+}
 
-// 	i = 0;
-// 	while (map_split[i])
-// 	{
-// 		free(map_split[i]);
-// 		i++;
-// 	}
-// 	free(map_split);
-// 	return (1);
-// }
+static int game_process(int keycode, t_data *data)
+{
+    if(keycode == W)
+        data->movement += movement(data, -1, 0);
+    else if(keycode == S)
+        data->movement += movement(data, 1, 0);
+    else if(keycode == A)
+        data->movement += movement(data, 0, -1);
+    else if(keycode == D)
+        data->movement += movement(data, 0, 1);
+    else if(keycode == ESC)
+        {
+            exit(0);
+        }
+    ft_printf("Nb of movement: %d\n", data->movement);
+    return 0;
+}
 
-// int game_process(int keycode, char **map_split)
-// {
-//     if(keycode == Z)
-//         ft_printf("%s\n", map_split[1]);
-//     return 0;
-// }
-
-static int mlx_test(t_sprite *sprite, char **map_split)
+static int mlx_start(t_game game, char **map_split)
 {
     void    *mlx;
     void    *window;
-    int y;
+    t_sprite	sprite;
+    t_data data;
 
     mlx = mlx_init();
-    y = 0;
-    while(map_split[y])
-        y++;
-    window = mlx_new_window(mlx, ft_strlen(map_split[0]) * 100, y * 100, "So long");
-    sprite_init(mlx, sprite);
-    if (!sprite->coin || !sprite->wall || !sprite->ground || !sprite->player || !sprite->exit)
+    window = mlx_new_window(mlx, ft_strlen(map_split[0]) * 100, ft_splitlen((const char **)map_split) * 100, "So long");
+    sprite_init(mlx, &sprite);
+    if (!sprite.coin || !sprite.wall || !sprite.ground || !sprite.player || !sprite.exit)
     {
         mlx_destroy_window(mlx, window);
         return 1;
     }
-    map_display(mlx, window, sprite, map_split);
-    // mlx_hook(window, 2, 1L << 0, game_process, sprite);
+    data_init(&data, sprite, game, map_split, mlx, window);
+    map_display(data.mlx, data.window, data.data_sprite, data.map);
+    mlx_hook(window, 2, 1L << 0, game_process, &data);
     mlx_loop(mlx);
-
     return 0;
 }
 
 int	main(int ac, char **av)
 {
 	t_game	game;
-    t_sprite	sprite;
 	char	**map_split;
 	char 	*temp;
 
 	if (ac != 2)
 		return (ft_printf_fd(2, "Error\nTry: ./so_long maps/map.ber\n"));
-	temp = map_parsing(av[1]);
+	temp = ft_read(open(av[1], O_RDONLY));
 	if(!temp)
 		return (1);
 	map_split = ft_split(temp, '\n');
@@ -74,10 +97,9 @@ int	main(int ac, char **av)
 	if (!map_split)
 		return (ft_printf_fd(2, "Error\nSplit error.\n"));
 	game_init(&game);
-	if (map_check(map_split, &game))
+	if (map_check(map_split, &game) || map_path_check(ft_splitdup((const char **)map_split)))
 		return (1);
 	ft_printf("Map is correct!\n");
-	//system("leaks so_long");
-	mlx_test(&sprite, map_split);
+	mlx_start(game, map_split);
 	return (0);
 }

@@ -6,16 +6,17 @@ MLX = $(MLX_PATH)
 MLX_INC = $(MLX_PATH)
 
 SRCS = 	so_long.c \
-		srcs/so_long/map_parsing.c \
 		srcs/so_long/game_init.c \
 		srcs/so_long/map_check.c \
 		srcs/so_long/map_path_check.c \
 		srcs/so_long/sprite_init.c \
-		srcs/so_long/map_display.c
+		srcs/so_long/map_display.c \
+		srcs/so_long/data_init.c \
+		srcs/so_long/player_position.c
 
 OBJS = $(SRCS:.c=.o)
 
-CFLAGS = -Wall -Wextra -Werror -I$(LIBFT)
+CFLAGS = -I$(LIBFT)
 LDFLAGS = -L$(LIBFT) -lft -lmlx -framework OpenGL -framework AppKit
 
 $(LIBFT)/libft.a:
