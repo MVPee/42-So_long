@@ -16,7 +16,7 @@ SRCS = 	so_long.c \
 
 OBJS = $(SRCS:.c=.o)
 
-CFLAGS = -I$(LIBFT)
+CFLAGS = -Wall -Werror -Wextra -I$(LIBFT)
 LDFLAGS = -L$(LIBFT) -lft -lmlx -framework OpenGL -framework AppKit
 
 $(LIBFT)/libft.a:

@@ -6,11 +6,18 @@
 /*   By: mvan-pee <mvan-pee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:19:32 by mvan-pee          #+#    #+#             */
-/*   Updated: 2023/11/20 12:49:45 by mvan-pee         ###   ########.fr       */
+/*   Updated: 2023/11/20 14:06:25 by mvan-pee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/so_long.h"
+
+static int end_game(t_data *data)
+{
+    mlx_destroy_window(data->mlx, data->window);
+    exit(0);
+    return 0;
+}
 
 static int movement(t_data *data, int y, int x)
 {
@@ -33,6 +40,7 @@ static int movement(t_data *data, int y, int x)
         if(data->collected == data->coin)
         {
             free(pos);
+            end_game(data);
             exit(0);
         }
     }
@@ -52,11 +60,15 @@ static int game_process(int keycode, t_data *data)
         data->movement += movement(data, 0, 1);
     else if(keycode == ESC)
     {
+        end_game(data);
         exit(0);
     }
-    map_display(data->mlx, data->window, data->data_sprite, data->map);
-    ft_printf("Nb of movement: %d\n", data->movement);
-    return 0;
+    if(data->movement)
+    {
+        map_display(data->mlx, data->window, data->data_sprite, data->map);
+        ft_printf("Nb of movement: %d\n", data->movement);
+    }
+    return (0);
 }
 
 static int mlx_start(t_game game, char **map_split)
@@ -72,13 +84,15 @@ static int mlx_start(t_game game, char **map_split)
     if (!sprite.coin || !sprite.wall || !sprite.ground || !sprite.player || !sprite.exit)
     {
         mlx_destroy_window(mlx, window);
-        return 1;
+        return (ft_printf_fd(2, "Error\nUp rscs fail.\n"));
     }
     data_init(&data, sprite, game, map_split, mlx, window);
     map_display(data.mlx, data.window, data.data_sprite, data.map);
     mlx_hook(window, 2, 1L << 0, game_process, &data);
+    mlx_hook(window, 17, 1L << 2, end_game, &data);
     mlx_loop(mlx);
-    return 0;
+    mlx_destroy_window(mlx, window);
+    return (0);
 }
 
 int	main(int ac, char **av)
@@ -100,6 +114,7 @@ int	main(int ac, char **av)
 	if (map_check(map_split, &game) || map_path_check(ft_splitdup((const char **)map_split)))
 		return (1);
 	ft_printf("Map is correct!\n");
-	mlx_start(game, map_split);
+	if(mlx_start(game, map_split))
+        return (1);
 	return (0);
 }
