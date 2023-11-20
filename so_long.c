@@ -6,7 +6,7 @@
 /*   By: mvan-pee <mvan-pee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:19:32 by mvan-pee          #+#    #+#             */
-/*   Updated: 2023/11/20 14:36:01 by mvan-pee         ###   ########.fr       */
+/*   Updated: 2023/11/20 15:21:53 by mvan-pee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,16 @@
 static int end_game(t_data *data)
 {
     mlx_destroy_window(data->mlx, data->window);
+    if(data->data_sprite.player)
+        mlx_destroy_image(data->mlx, data->data_sprite.player);
+    if(data->data_sprite.ground)
+        mlx_destroy_image(data->mlx, data->data_sprite.ground);
+    if(data->data_sprite.coin)
+        mlx_destroy_image(data->mlx, data->data_sprite.coin);
+    if(data->data_sprite.wall)
+        mlx_destroy_image(data->mlx, data->data_sprite.wall);
+    if(data->data_sprite.exit)
+        mlx_destroy_image(data->mlx, data->data_sprite.exit);
     exit(EXIT_SUCCESS);
 }
 
@@ -80,7 +90,7 @@ static int mlx_start(t_game game, char **map_split)
     if (!sprite.coin || !sprite.wall || !sprite.ground || !sprite.player || !sprite.exit)
     {
         mlx_destroy_window(mlx, window);
-        return (ft_printf_fd(2, "Error\nUp rscs fail.\n"));
+        return (ft_printf_fd(2, "Error\nSprites fail.\n"));
     }
     data_init(&data, sprite, game, map_split, mlx, window);
     map_display(data.mlx, data.window, data.data_sprite, data.map);
