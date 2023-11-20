@@ -6,7 +6,7 @@
 /*   By: mvan-pee <mvan-pee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:20:15 by mvan-pee          #+#    #+#             */
-/*   Updated: 2023/11/20 12:40:26 by mvan-pee         ###   ########.fr       */
+/*   Updated: 2023/11/20 12:48:46 by mvan-pee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,11 @@
 # define D 2
 # define S 1
 # define ESC 53
+
+# define UP 126
+# define DOWN 125
+# define LEFT 123
+# define RIGHT 124
 
 typedef struct s_game
 {

@@ -6,7 +6,7 @@
 /*   By: mvan-pee <mvan-pee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:19:32 by mvan-pee          #+#    #+#             */
-/*   Updated: 2023/11/20 12:42:45 by mvan-pee         ###   ########.fr       */
+/*   Updated: 2023/11/20 12:49:45 by mvan-pee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,18 +42,18 @@ static int movement(t_data *data, int y, int x)
 
 static int game_process(int keycode, t_data *data)
 {
-    if(keycode == W)
+    if(keycode == W || keycode == UP)
         data->movement += movement(data, -1, 0);
-    else if(keycode == S)
+    else if(keycode == S || keycode == DOWN)
         data->movement += movement(data, 1, 0);
-    else if(keycode == A)
+    else if(keycode == A || keycode == LEFT)
         data->movement += movement(data, 0, -1);
-    else if(keycode == D)
+    else if(keycode == D || keycode == RIGHT)
         data->movement += movement(data, 0, 1);
     else if(keycode == ESC)
-        {
-            exit(0);
-        }
+    {
+        exit(0);
+    }
     map_display(data->mlx, data->window, data->data_sprite, data->map);
     ft_printf("Nb of movement: %d\n", data->movement);
     return 0;
