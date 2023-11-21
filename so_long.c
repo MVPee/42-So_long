@@ -6,7 +6,7 @@
 /*   By: mvan-pee <mvan-pee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:19:32 by mvan-pee          #+#    #+#             */
-/*   Updated: 2023/11/21 11:16:08 by mvan-pee         ###   ########.fr       */
+/*   Updated: 2023/11/21 12:08:44 by mvan-pee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,9 @@ static int	mlx_start(t_game game, char **map_split)
 	void		*window;
 	t_sprite	sprite;
 	t_data		data;
-
+    
+    if((ft_strlen(map_split[0]) > 24) || (ft_splitlen((const char **)map_split) > 14))
+        return (ft_printf_fd(2, "Error\nMap too big.\n"));
 	mlx = mlx_init();
 	window = mlx_new_window(mlx, ft_strlen(map_split[0]) * 100,
 		ft_splitlen((const char **)map_split) * 100, "So long");
