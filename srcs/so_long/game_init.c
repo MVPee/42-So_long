@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   game_init.c                                         :+:      :+:    :+:   */
+/*   game_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvan-pee <mvan-pee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/15 11:55:04 by mvan-pee          #+#    #+#             */
-/*   Updated: 2023/11/16 13:26:56 by mvan-pee         ###   ########.fr       */
+/*   Created: 2023/11/21 11:23:50 by mvan-pee          #+#    #+#             */
+/*   Updated: 2023/11/21 11:23:52 by mvan-pee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/so_long.h"
 
-void game_init(t_game *game)
+void	game_init(t_game *game)
 {
-    game->player = 0;
-    game->exit = 0;
-    game->coin = 0;
-    game->len = 0;
+	game->player = 0;
+	game->exit = 0;
+	game->coin = 0;
+	game->len = 0;
 }
