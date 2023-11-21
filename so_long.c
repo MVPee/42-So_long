@@ -6,11 +6,32 @@
 /*   By: mvan-pee <mvan-pee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:19:32 by mvan-pee          #+#    #+#             */
-/*   Updated: 2023/11/21 10:33:35 by mvan-pee         ###   ########.fr       */
+/*   Updated: 2023/11/21 10:51:10 by mvan-pee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/so_long.h"
+
+static void sprite_switch(t_data *data, char type, char *path)
+{
+    int	img_height;
+	int	img_width;
+    
+    if (type == 'P')
+    {
+        if(data->data_sprite.player)
+            mlx_destroy_image(data->mlx, data->data_sprite.player);
+        data->data_sprite.player = mlx_xpm_file_to_image(data->mlx, path, &img_width, &img_height);
+    }
+    else if (type == 'E')
+    {
+        if(data->data_sprite.exit)
+            mlx_destroy_image(data->mlx, data->data_sprite.exit);
+        data->data_sprite.exit = mlx_xpm_file_to_image(data->mlx, path, &img_width, &img_height);
+    }
+    if(!data->data_sprite.player || !data->data_sprite.exit)
+        end_game(data, "Error\nSprites fail.\n");
+}
 
 static int movement(t_data *data, int y, int x)
 {
@@ -27,6 +48,8 @@ static int movement(t_data *data, int y, int x)
         data->map[pos[0]][pos[1]] = '0';
         data->map[pos[0] + y][pos[1] + x] = 'P';
         data->collected++;
+        if(data->collected == data->coin)
+            sprite_switch(data, 'E', "rscs/open.xpm");
     }
     if (data->map[pos[0] + y][pos[1] + x] && data->map[pos[0] + y][pos[1] + x] == 'E')
     {
@@ -40,39 +63,27 @@ static int movement(t_data *data, int y, int x)
     return (1);
 }
 
-static void sprite_switch(t_data *data, char *path)
-{
-    int	img_height;
-	int	img_width;
-
-    if(data->data_sprite.player)
-        mlx_destroy_image(data->mlx, data->data_sprite.player);
-    data->data_sprite.player = mlx_xpm_file_to_image(data->mlx, path, &img_width, &img_height);
-    if(!data->data_sprite.player)
-        end_game(data, "Error\nSprites fail.\n");
-}
-
 static int game_process(int keycode, t_data *data)
 {
     if(keycode == W || keycode == UP)
     {
         data->movement += movement(data, -1, 0);
-        sprite_switch(data, "rscs/north.xpm");
+        sprite_switch(data, 'P', "rscs/north.xpm");
     }   
     else if(keycode == S || keycode == DOWN)
     {
         data->movement += movement(data, 1, 0);
-        sprite_switch(data, "rscs/south.xpm");
+        sprite_switch(data, 'P', "rscs/south.xpm");
     }
     else if(keycode == A || keycode == LEFT)
     {
         data->movement += movement(data, 0, -1);
-        sprite_switch(data, "rscs/west.xpm");
+        sprite_switch(data, 'P', "rscs/west.xpm");
     }
     else if(keycode == D || keycode == RIGHT)
     {
         data->movement += movement(data, 0, 1);
-        sprite_switch(data, "rscs/east.xpm");
+        sprite_switch(data, 'P', "rscs/east.xpm");
     }
     else if(keycode == ESC)
         end_game(data, "\nESC");
