@@ -6,7 +6,7 @@
 /*   By: mvan-pee <mvan-pee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:20:15 by mvan-pee          #+#    #+#             */
-/*   Updated: 2023/11/20 12:48:46 by mvan-pee         ###   ########.fr       */
+/*   Updated: 2023/11/21 10:33:56 by mvan-pee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,6 @@ void			map_display(void *mlx, void *window, t_sprite sprite,
 void			data_init(t_data *data, t_sprite sprite, t_game game,
 					char **map, void *mlx, void *window);
 int				*player_position(char **map);
+int				end_game(t_data *data, char *message);
 
 #endif
