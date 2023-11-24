@@ -6,7 +6,7 @@
 /*   By: mvan-pee <mvan-pee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:19:32 by mvan-pee          #+#    #+#             */
-/*   Updated: 2023/11/21 12:13:31 by mvan-pee         ###   ########.fr       */
+/*   Updated: 2023/11/21 12:50:31 by mvan-pee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,14 @@ static void	sprite_switch(t_data *data, char type, char *path)
 	{
 		if (data->data_sprite.player)
 			mlx_destroy_image(data->mlx, data->data_sprite.player);
-		data->data_sprite.player = mlx_xpm_file_to_image(data->mlx, path, \
+		data->data_sprite.player = mlx_xpm_file_to_image(data->mlx, path,
 			&img_width, &img_height);
 	}
 	else if (type == 'E')
 	{
 		if (data->data_sprite.exit)
 			mlx_destroy_image(data->mlx, data->data_sprite.exit);
-		data->data_sprite.exit = mlx_xpm_file_to_image(data->mlx, path, \
+		data->data_sprite.exit = mlx_xpm_file_to_image(data->mlx, path,
 			&img_width, &img_height);
 	}
 	if (!data->data_sprite.player || !data->data_sprite.exit)
@@ -42,12 +42,14 @@ static int	movement(t_data *data, int y, int x)
 	pos = player_position(data->map);
 	if (!pos)
 		end_game(data, "Error\nWhere is Player?");
-	if (data->map[pos[0] + y][pos[1] + x] && data->map[pos[0] + y][pos[1] + x] == '0')
+	if (data->map[pos[0] + y][pos[1] + x] && data->map[pos[0] + y][pos[1]
+		+ x] == '0')
 	{
 		data->map[pos[0]][pos[1]] = '0';
 		data->map[pos[0] + y][pos[1] + x] = 'P';
 	}
-	if (data->map[pos[0] + y][pos[1] + x] && data->map[pos[0] + y][pos[1] + x] == 'C')
+	if (data->map[pos[0] + y][pos[1] + x] && data->map[pos[0] + y][pos[1]
+		+ x] == 'C')
 	{
 		data->map[pos[0]][pos[1]] = '0';
 		data->map[pos[0] + y][pos[1] + x] = 'P';
@@ -55,7 +57,8 @@ static int	movement(t_data *data, int y, int x)
 		if (data->collected == data->coin)
 			sprite_switch(data, 'E', "rscs/open.xpm");
 	}
-	if (data->map[pos[0] + y][pos[1] + x] && data->map[pos[0] + y][pos[1] + x] == 'E')
+	if (data->map[pos[0] + y][pos[1] + x] && data->map[pos[0] + y][pos[1]
+		+ x] == 'E')
 	{
 		if (data->collected == data->coin)
 		{
@@ -107,9 +110,10 @@ static int	mlx_start(t_game game, char **map_split)
 	void		*window;
 	t_sprite	sprite;
 	t_data		data;
-    
-    if((ft_strlen(map_split[0]) > 24) || (ft_splitlen((const char **)map_split) > 14))
-        return (ft_printf_fd(2, "Error\nMap too big.\n"));
+
+	if ((ft_strlen(map_split[0]) > 24)
+		|| (ft_splitlen((const char **)map_split) > 14))
+		return (ft_printf_fd(2, "Error\nMap too big.\n"));
 	mlx = mlx_init();
 	window = mlx_new_window(mlx, ft_strlen(map_split[0]) * 100,
 		ft_splitlen((const char **)map_split) * 100, "So long");

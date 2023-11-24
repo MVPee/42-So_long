@@ -6,12 +6,10 @@ MLX = $(MLX_PATH)
 MLX_INC = $(MLX_PATH)
 
 SRCS = 	so_long.c \
-		srcs/so_long/game_init.c \
 		srcs/so_long/map_check.c \
 		srcs/so_long/map_path_check.c \
-		srcs/so_long/sprite_init.c \
 		srcs/so_long/map_display.c \
-		srcs/so_long/data_init.c \
+		srcs/so_long/init.c \
 		srcs/so_long/player_position.c \
 		srcs/so_long/end_game.c
 
