@@ -6,7 +6,7 @@
 /*   By: mvan-pee <mvan-pee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:20:15 by mvan-pee          #+#    #+#             */
-/*   Updated: 2023/11/24 10:35:12 by mvan-pee         ###   ########.fr       */
+/*   Updated: 2023/11/24 12:17:17 by mvan-pee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,7 @@ int				game_process(int keycode, t_data *data);
 void			map_display(void *mlx, void *window, t_sprite sprite,
 					char **map_split);
 int				end_game(t_data *data, char *message);
+
+int				test_animation(t_data *data);
 
 #endif
