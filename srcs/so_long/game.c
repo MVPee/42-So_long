@@ -6,7 +6,7 @@
 /*   By: mvan-pee <mvan-pee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 10:21:35 by mvan-pee          #+#    #+#             */
-/*   Updated: 2023/11/24 12:39:56 by mvan-pee         ###   ########.fr       */
+/*   Updated: 2023/11/24 13:07:56 by mvan-pee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,8 @@ static int	movement(t_data *data, int y, int x)
 
 int	game_process(int keycode, t_data *data)
 {
+	char *mv_string;
+
 	if (keycode == W || keycode == UP)
 	{
 		data->movement += movement(data, -1, 0);
@@ -118,6 +120,8 @@ int	game_process(int keycode, t_data *data)
 	else if (keycode == ESC)
 		end_game(data, "\nESC");
 	map_display(data->mlx, data->window, data->data_sprite, data->map);
-	ft_printf("Step(s): %d\n", data->movement);
+	mv_string = ft_itoa(data->movement);
+	mlx_string_put(data->mlx, data->window, 0, 0, 0xFFFFFF, mv_string);
+	ft_free(mv_string);
 	return (0);
 }
