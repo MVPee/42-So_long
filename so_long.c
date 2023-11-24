@@ -6,7 +6,7 @@
 /*   By: mvan-pee <mvan-pee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:19:32 by mvan-pee          #+#    #+#             */
-/*   Updated: 2023/11/24 10:46:02 by mvan-pee         ###   ########.fr       */
+/*   Updated: 2023/11/24 12:02:10 by mvan-pee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ static int	mlx_start(t_game game, char **map_split)
 	mlx_hook(data.window, 2, 1L << 0, game_process, &data);
 	mlx_hook(data.window, 17, 1L << 2, end_game, &data);
 	mlx_loop(data.mlx);
-	mlx_destroy_window(data.mlx, data.window);
 	return (0);
 }
 
@@ -49,14 +48,13 @@ int	main(int ac, char **av)
 	if (!temp)
 		return (1);
 	map_split = ft_split(temp, '\n');
-	free(temp);
+	ft_free(temp);
 	if (!map_split)
 		return (ft_printf_fd(2, "Error\nSplit error.\n"));
 	game_init(&game);
 	if (map_check(map_split, &game)
 		|| map_path_check(ft_splitdup((const char **)map_split)))
 		return (1);
-	if (mlx_start(game, map_split))
-		return (1);
+	mlx_start(game, map_split);
 	return (0);
 }
