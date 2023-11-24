@@ -6,7 +6,7 @@
 /*   By: mvan-pee <mvan-pee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:20:15 by mvan-pee          #+#    #+#             */
-/*   Updated: 2023/11/21 10:33:56 by mvan-pee         ###   ########.fr       */
+/*   Updated: 2023/11/24 10:35:12 by mvan-pee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,14 +56,15 @@ typedef struct s_data
 }				t_data;
 
 void			game_init(t_game *game);
+void			sprite_init(void *mlx, t_sprite *sprite);
+void			data_init(t_data *data, t_game game, char **map);
+
 int				map_check(char **map_split, t_game *game);
 int				map_path_check(char **map);
-void			sprite_init(void *mlx, t_sprite *sprite);
+
+int				game_process(int keycode, t_data *data);
 void			map_display(void *mlx, void *window, t_sprite sprite,
 					char **map_split);
-void			data_init(t_data *data, t_sprite sprite, t_game game,
-					char **map, void *mlx, void *window);
-int				*player_position(char **map);
 int				end_game(t_data *data, char *message);
 
 #endif

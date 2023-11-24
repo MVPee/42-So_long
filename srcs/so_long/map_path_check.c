@@ -6,24 +6,11 @@
 /*   By: mvan-pee <mvan-pee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 10:05:25 by mvan-pee          #+#    #+#             */
-/*   Updated: 2023/11/21 11:40:21 by mvan-pee         ###   ########.fr       */
+/*   Updated: 2023/11/24 10:18:16 by mvan-pee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/so_long.h"
-
-static void	free_map(char **map)
-{
-	int	i;
-
-	i = 0;
-	while (map[i])
-	{
-		free(map[i]);
-		i++;
-	}
-	free(map);
-}
 
 static int	check_for_destination(char **map)
 {
@@ -39,14 +26,14 @@ static int	check_for_destination(char **map)
 		{
 			if (map[y][x] == 'C' || map[y][x] == 'E')
 			{
-				free_map(map);
+				ft_free_split(map);
 				return (ft_printf_fd(2, "Error\nMap is impossible.\n"));
 			}
 			x++;
 		}
 		y++;
 	}
-	free_map(map);
+	ft_free_split(map);
 	return (0);
 }
 
