@@ -1,9 +1,9 @@
 NAME = so_long
 
 LIBFT = srcs/libft
-MLX_PATH = ../../minilibx
-MLX = $(MLX_PATH)
-MLX_INC = $(MLX_PATH)
+# MLX_PATH = ../../minilibx
+# MLX = $(MLX_PATH)
+# MLX_INC = $(MLX_PATH)
 
 SRCS = 	so_long.c \
 		srcs/so_long/game.c \
@@ -16,7 +16,8 @@ SRCS = 	so_long.c \
 OBJS = $(SRCS:.c=.o)
 
 CFLAGS = -Wall -Werror -Wextra -I$(LIBFT)
-LDFLAGS = -L$(LIBFT) -lft -lmlx -framework OpenGL -framework AppKit
+# LDFLAGS = -L$(LIBFT) -lft -lmlx -framework OpenGL -framework AppKit
+LDFLAGS = -L$(LIBFT) -lft -lmlx -lXext -lX11 -lm
 
 $(LIBFT)/libft.a:
 	$(MAKE) -C $(LIBFT)

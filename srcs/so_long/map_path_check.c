@@ -25,15 +25,11 @@ static int	check_for_destination(char **map)
 		while (map[y][x])
 		{
 			if (map[y][x] == 'C' || map[y][x] == 'E')
-			{
-				ft_free_split(map);
 				return (ft_printf_fd(2, "Error\nMap is impossible.\n"));
-			}
 			x++;
 		}
 		y++;
 	}
-	ft_free_split(map);
 	return (0);
 }
 

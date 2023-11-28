@@ -14,14 +14,10 @@
 
 int	end_game(t_data *data, char *message)
 {
-	int	i;
-
 	if (ft_strncmp(message, "closeNotification:", ft_strlen(message)) == 0)
 		ft_printf("\nCLOSE\n");
 	else
 		ft_printf("%s\n", message);
-	i = 0;
-	mlx_destroy_window(data->mlx, data->window);
 	if (data->data_sprite.player)
 		mlx_destroy_image(data->mlx, data->data_sprite.player);
 	if (data->data_sprite.ground)
@@ -33,5 +29,6 @@ int	end_game(t_data *data, char *message)
 	if (data->data_sprite.exit)
 		mlx_destroy_image(data->mlx, data->data_sprite.exit);
 	ft_free_split(data->map);
+	mlx_destroy_window(data->mlx, data->window);
 	exit(EXIT_SUCCESS);
 }

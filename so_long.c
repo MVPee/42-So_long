@@ -41,6 +41,7 @@ int	main(int ac, char **av)
 	t_game	game;
 	char	**map_split;
 	char	*temp;
+	char	**dup;
 
 	if (ac != 2)
 		return (ft_printf_fd(2, "Error\nTry: ./so_long maps/map.ber\n"));
@@ -52,9 +53,15 @@ int	main(int ac, char **av)
 	if (!map_split)
 		return (ft_printf_fd(2, "Error\nSplit error.\n"));
 	game_init(&game);
+	dup = ft_splitdup((const char **)map_split);
 	if (map_check(map_split, &game)
-		|| map_path_check(ft_splitdup((const char **)map_split)))
+		|| map_path_check(dup))
+	{
+		ft_free_split(map_split);
+		ft_free_split(dup);
 		return (1);
+	}
+	ft_free_split(dup);
 	mlx_start(game, map_split);
 	return (0);
 }
