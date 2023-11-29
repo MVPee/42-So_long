@@ -6,11 +6,11 @@
 /*   By: mvan-pee <mvan-pee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 10:10:07 by mvan-pee          #+#    #+#             */
-/*   Updated: 2023/11/24 10:40:38 by mvan-pee         ###   ########.fr       */
+/*   Updated: 2023/11/29 12:38:31 by mvan-pee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/so_long.h"
+#include "../includes/so_long.h"
 
 void	data_init(t_data *data, t_game game, char **map)
 {
@@ -38,6 +38,10 @@ void	sprite_init(void *mlx, t_sprite *sprite)
 	sprite->player = mlx_xpm_file_to_image(mlx, "rscs/south.xpm", &img_width, \
 		&img_height);
 	sprite->exit = mlx_xpm_file_to_image(mlx, "rscs/close.xpm", &img_width, \
+		&img_height);
+	sprite->enemy = mlx_xpm_file_to_image(mlx, "rscs/enemy.xpm", &img_width, \
+		&img_height);
+	sprite->dead = mlx_xpm_file_to_image(mlx, "rscs/dead.xpm", &img_width, \
 		&img_height);
 }
 

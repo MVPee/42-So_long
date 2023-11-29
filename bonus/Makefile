@@ -1,23 +1,23 @@
 NAME = so_long
 
-LIBFT = srcs/libft
+LIBFT = ../libft
 # MLX_PATH = ../../minilibx
 # MLX = $(MLX_PATH)
 # MLX_INC = $(MLX_PATH)
 
-SRCS = 	so_long.c \
-		srcs/so_long/game.c \
-		srcs/so_long/map_check.c \
-		srcs/so_long/map_path_check.c \
-		srcs/so_long/map_display.c \
-		srcs/so_long/init.c \
-		srcs/so_long/end_game.c
+SRCS = 	srcs/main.c \
+		srcs/game.c \
+		srcs/map_check.c \
+		srcs/map_path_check.c \
+		srcs/map_display.c \
+		srcs/init.c \
+		srcs/end_game.c
 
 OBJS = $(SRCS:.c=.o)
 
 CFLAGS = -Wall -Werror -Wextra -I$(LIBFT)
-# LDFLAGS = -L$(LIBFT) -lft -lmlx -framework OpenGL -framework AppKit
-LDFLAGS = -L$(LIBFT) -lft -lmlx -lXext -lX11 -lm
+LDFLAGS = -L$(LIBFT) -lft -lmlx -framework OpenGL -framework AppKit
+# LDFLAGS = -L$(LIBFT) -lft -lmlx -lXext -lX11 -lm
 
 $(LIBFT)/libft.a:
 	$(MAKE) -C $(LIBFT)

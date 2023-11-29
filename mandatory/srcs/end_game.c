@@ -6,11 +6,11 @@
 /*   By: mvan-pee <mvan-pee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 10:32:54 by mvan-pee          #+#    #+#             */
-/*   Updated: 2023/11/24 10:27:39 by mvan-pee         ###   ########.fr       */
+/*   Updated: 2023/11/29 10:53:08 by mvan-pee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/so_long.h"
+#include "../includes/so_long.h"
 
 int	end_game(t_data *data, char *message)
 {

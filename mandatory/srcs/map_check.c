@@ -6,11 +6,11 @@
 /*   By: mvan-pee <mvan-pee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 08:24:33 by mvan-pee          #+#    #+#             */
-/*   Updated: 2023/11/21 11:22:31 by mvan-pee         ###   ########.fr       */
+/*   Updated: 2023/11/29 10:53:10 by mvan-pee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/so_long.h"
+#include "../includes/so_long.h"
 
 static int	map_line_check(char *line, size_t len, int nbTable, int count)
 {

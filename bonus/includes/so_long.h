@@ -6,28 +6,28 @@
 /*   By: mvan-pee <mvan-pee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:20:15 by mvan-pee          #+#    #+#             */
-/*   Updated: 2023/11/24 12:17:17 by mvan-pee         ###   ########.fr       */
+/*   Updated: 2023/11/29 12:38:41 by mvan-pee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
-# include "../srcs/libft/includes/libft.h"
+# include "../libft/includes/libft.h"
 # include <mlx.h>
 
+//Linux
+// # define W 119
+// # define A 97
+// # define D 100
+// # define S 115
+// # define ESC 65307
 
-# define W 119
-# define A 97
-# define D 100
-# define S 115
-# define ESC 65307
-
-//MacOs
-// # define W 13
-// # define A 0
-// # define D 2
-// # define S 1
-// # define ESC 53
+// MacOs
+# define W 13
+# define A 0
+# define D 2
+# define S 1
+# define ESC 53
 
 # define UP 126
 # define DOWN 125
@@ -49,6 +49,8 @@ typedef struct s_sprite
 	void		*coin;
 	void		*wall;
 	void		*exit;
+	void		*enemy;
+	void		*dead;
 }				t_sprite;
 
 typedef struct s_data

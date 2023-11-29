@@ -6,11 +6,11 @@
 /*   By: mvan-pee <mvan-pee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 14:35:11 by mvan-pee          #+#    #+#             */
-/*   Updated: 2023/11/21 10:21:39 by mvan-pee         ###   ########.fr       */
+/*   Updated: 2023/11/29 10:53:12 by mvan-pee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/so_long.h"
+#include "../includes/so_long.h"
 
 void	map_display(void *m, void *w, t_sprite sprite, char **map_split)
 {
