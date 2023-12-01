@@ -6,7 +6,7 @@
 /*   By: mvan-pee <mvan-pee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 10:21:35 by mvan-pee          #+#    #+#             */
-/*   Updated: 2023/11/29 12:54:42 by mvan-pee         ###   ########.fr       */
+/*   Updated: 2023/11/29 13:19:28 by mvan-pee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,9 @@ static int	movement(t_data *d, int y, int x)
 		move_player(d, y, x, p);
 	else if (d->map[p[0] + y][p[1] + x] && d->map[p[0] + y][p[1] + x] == 'M')
 	{
-		end_game(d, "\nYOU DEAD...\n");
 		ft_free(p);
-	}	
+		end_game(d, "\nYOU DEAD...\n");
+	}
 	else if (d->map[p[0] + y][p[1] + x] && d->map[p[0] + y][p[1] + x] == 'C')
 	{
 		move_player(d, y, x, p);
@@ -95,10 +95,17 @@ static int	movement(t_data *d, int y, int x)
 	return (1);
 }
 
-int	game_process(int keycode, t_data *data)
+static void	display_step(t_data *data)
 {
 	char	*mv_string;
 
+	mv_string = ft_itoa(data->movement);
+	mlx_string_put(data->mlx, data->window, 0, 0, 0xFFFFFF, mv_string);
+	ft_free(mv_string);
+}
+
+int	game_process(int keycode, t_data *data)
+{
 	if (keycode == W || keycode == UP)
 	{
 		data->movement += movement(data, -1, 0);
@@ -122,8 +129,6 @@ int	game_process(int keycode, t_data *data)
 	else if (keycode == ESC)
 		end_game(data, "\nESC\n");
 	map_display(data->mlx, data->window, data->data_sprite, data->map);
-	mv_string = ft_itoa(data->movement);
-	mlx_string_put(data->mlx, data->window, 0, 0, 0xFFFFFF, mv_string);
-	ft_free(mv_string);
+	display_step(data);
 	return (0);
 }
