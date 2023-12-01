@@ -11,7 +11,9 @@ SRCS = 	srcs/main.c \
 		srcs/map_path_check.c \
 		srcs/map_display.c \
 		srcs/init.c \
-		srcs/end_game.c
+		srcs/end_game.c \
+		srcs/animation.c \
+		srcs/find_position.c
 
 OBJS = $(SRCS:.c=.o)
 

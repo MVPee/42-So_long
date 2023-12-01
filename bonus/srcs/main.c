@@ -6,7 +6,7 @@
 /*   By: mvan-pee <mvan-pee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:19:32 by mvan-pee          #+#    #+#             */
-/*   Updated: 2023/11/29 14:57:38 by mvan-pee         ###   ########.fr       */
+/*   Updated: 2023/12/01 15:19:53 by mvan-pee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,16 @@ static int	mlx_start(t_game game, char **map_split)
 		return (ft_printf_fd(2, "Error\nMap too big.\n"));
 	data_init(&data, game, map_split);
 	sprite_init(data.mlx, &sprite);
-	if (!sprite.coin || !sprite.wall || !sprite.ground || !sprite.player
-		|| !sprite.exit)
+	if (!sprite.coin_current || !sprite.wall || !sprite.ground || !sprite.player
+		|| !sprite.exit_current || !sprite.monster_current)
 	{
 		mlx_destroy_window(data.mlx, data.window);
 		return (ft_printf_fd(2, "Error\nSprites fail.\n"));
 	}
 	data.data_sprite = sprite;
-	map_display(data.mlx, data.window, data.data_sprite, data.map);
 	mlx_hook(data.window, 2, 1L << 0, game_process, &data);
 	mlx_hook(data.window, 17, 1L << 2, end_game, &data);
+	mlx_loop_hook(data.mlx, animation, &data);
 	mlx_loop(data.mlx);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: mvan-pee <mvan-pee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:20:15 by mvan-pee          #+#    #+#             */
-/*   Updated: 2023/11/29 13:19:36 by mvan-pee         ###   ########.fr       */
+/*   Updated: 2023/12/01 15:49:36 by mvan-pee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 # include "../libft/includes/libft.h"
 # include <mlx.h>
 
-//Linux
+// Linux
 // # define W 119
 // # define A 97
 // # define D 100
@@ -46,10 +46,31 @@ typedef struct s_sprite
 {
 	void		*player;
 	void		*ground;
-	void		*coin;
+	void		*coin_current;
+	void		*coin1;
+	void		*coin2;
+	void		*coin3;
+	void		*coin4;
+	void		*coin5;
 	void		*wall;
-	void		*exit;
-	void		*enemy;
+	void		*exit_current;
+	void		*exit_open;
+	void		*exit_close;
+	void		*monster_current;
+	void		*monster1;
+	void		*monster2;
+	void		*monster3;
+	void		*monster4;
+	void		*monster5;
+	void		*monster6;
+	void		*monster7;
+	void		*monster8;
+	void		*monster9;
+	void		*boom1;
+	void		*boom2;
+	void		*boom3;
+	void		*boom4;
+	void		*boom5;
 	void		*dead;
 }				t_sprite;
 
@@ -76,5 +97,8 @@ int				game_process(int keycode, t_data *data);
 void			map_display(void *mlx, void *window, t_sprite sprite,
 					char **map_split);
 int				end_game(t_data *data, char *message);
+
+int				animation(t_data *data);
+int				*find_position(t_data *data, char c);
 
 #endif

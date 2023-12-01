@@ -6,7 +6,7 @@
 /*   By: mvan-pee <mvan-pee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 10:10:07 by mvan-pee          #+#    #+#             */
-/*   Updated: 2023/11/29 12:38:31 by mvan-pee         ###   ########.fr       */
+/*   Updated: 2023/12/01 15:51:46 by mvan-pee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,17 +29,56 @@ void	sprite_init(void *mlx, t_sprite *sprite)
 	int	img_height;
 	int	img_width;
 
-	sprite->coin = mlx_xpm_file_to_image(mlx, "rscs/coin.xpm", &img_width, \
+	sprite->coin1 = mlx_xpm_file_to_image(mlx, "rscs/coin1.xpm", &img_width, \
 		&img_height);
+	sprite->coin2 = mlx_xpm_file_to_image(mlx, "rscs/coin2.xpm", &img_width, \
+		&img_height);
+	sprite->coin3 = mlx_xpm_file_to_image(mlx, "rscs/coin3.xpm", &img_width, \
+		&img_height);
+	sprite->coin4 = mlx_xpm_file_to_image(mlx, "rscs/coin4.xpm", &img_width, \
+		&img_height);
+	sprite->coin5 = mlx_xpm_file_to_image(mlx, "rscs/coin5.xpm", &img_width, \
+		&img_height);
+	sprite->coin_current = sprite->coin1;
 	sprite->wall = mlx_xpm_file_to_image(mlx, "rscs/wall.xpm", &img_width, \
 		&img_height);
 	sprite->ground = mlx_xpm_file_to_image(mlx, "rscs/ground.xpm", &img_width, \
 		&img_height);
 	sprite->player = mlx_xpm_file_to_image(mlx, "rscs/south.xpm", &img_width, \
 		&img_height);
-	sprite->exit = mlx_xpm_file_to_image(mlx, "rscs/close.xpm", &img_width, \
+	sprite->exit_open = mlx_xpm_file_to_image(mlx, "rscs/open.xpm", &img_width, \
 		&img_height);
-	sprite->enemy = mlx_xpm_file_to_image(mlx, "rscs/enemy.xpm", &img_width, \
+	sprite->exit_close = mlx_xpm_file_to_image(mlx, "rscs/close.xpm", &img_width, \
+		&img_height);
+	sprite->exit_current = sprite->exit_close;
+	sprite->monster1 = mlx_xpm_file_to_image(mlx, "rscs/monster1.xpm", &img_width, \
+		&img_height);
+	sprite->monster2 = mlx_xpm_file_to_image(mlx, "rscs/monster2.xpm", &img_width, \
+		&img_height);
+	sprite->monster3 = mlx_xpm_file_to_image(mlx, "rscs/monster3.xpm", &img_width, \
+		&img_height);
+	sprite->monster4 = mlx_xpm_file_to_image(mlx, "rscs/monster4.xpm", &img_width, \
+		&img_height);
+	sprite->monster5 = mlx_xpm_file_to_image(mlx, "rscs/monster5.xpm", &img_width, \
+		&img_height);
+	sprite->monster6 = mlx_xpm_file_to_image(mlx, "rscs/monster6.xpm", &img_width, \
+		&img_height);
+	sprite->monster7 = mlx_xpm_file_to_image(mlx, "rscs/monster7.xpm", &img_width, \
+		&img_height);
+	sprite->monster8 = mlx_xpm_file_to_image(mlx, "rscs/monster8.xpm", &img_width, \
+		&img_height);
+	sprite->monster9 = mlx_xpm_file_to_image(mlx, "rscs/monster9.xpm", &img_width, \
+		&img_height);
+	sprite->monster_current = sprite->monster1;
+	sprite->boom1 = mlx_xpm_file_to_image(mlx, "rscs/boom1.xpm", &img_width, \
+		&img_height);
+	sprite->boom2 = mlx_xpm_file_to_image(mlx, "rscs/boom2.xpm", &img_width, \
+		&img_height);
+	sprite->boom3 = mlx_xpm_file_to_image(mlx, "rscs/boom3.xpm", &img_width, \
+		&img_height);
+	sprite->boom4 = mlx_xpm_file_to_image(mlx, "rscs/boom4.xpm", &img_width, \
+		&img_height);
+	sprite->boom5 = mlx_xpm_file_to_image(mlx, "rscs/boom5.xpm", &img_width, \
 		&img_height);
 	sprite->dead = mlx_xpm_file_to_image(mlx, "rscs/dead.xpm", &img_width, \
 		&img_height);
