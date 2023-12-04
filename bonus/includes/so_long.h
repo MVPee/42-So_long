@@ -6,7 +6,7 @@
 /*   By: mvan-pee <mvan-pee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:20:15 by mvan-pee          #+#    #+#             */
-/*   Updated: 2023/12/01 15:49:36 by mvan-pee         ###   ########.fr       */
+/*   Updated: 2023/12/04 13:50:19 by mvan-pee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ typedef struct s_data
 	int			collected;
 	int			coin;
 	int			movement;
+	int			**pos_monster;
 	void		*mlx;
 	void		*window;
 	t_sprite	data_sprite;
@@ -100,5 +101,6 @@ int				end_game(t_data *data, char *message);
 
 int				animation(t_data *data);
 int				*find_position(t_data *data, char c);
+int				**find_all_position(t_data *data, char c);
 
 #endif

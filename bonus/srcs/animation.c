@@ -6,30 +6,39 @@
 /*   By: mvan-pee <mvan-pee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 10:37:11 by mvan-pee          #+#    #+#             */
-/*   Updated: 2023/12/01 15:56:45 by mvan-pee         ###   ########.fr       */
+/*   Updated: 2023/12/04 14:42:33 by mvan-pee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-static void player_dead(t_data *data, int *pos)
+static void dead(t_data *data, int *pos)
 {
 	if(data->map[pos[0] + 1][pos[1]] == 'P')
-		end_game(data, "\nYOU DEAD BY EXPLOSION...\n");
+		end_game(data, "\nYOU EXPLODED...\n");
 	else if(data->map[pos[0] - 1][pos[1]] == 'P')
-		end_game(data, "\nYOU DEAD BY EXPLOSION...\n");
+		end_game(data, "\nYOU EXPLODED...\n");
 	else if(data->map[pos[0]][pos[1] + 1] == 'P')
-		end_game(data, "\nYOU DEAD BY EXPLOSION...\n");
+		end_game(data, "\nYOU EXPLODED...\n");
 	else if(data->map[pos[0]][pos[1] - 1] == 'P')
-		end_game(data, "\nYOU DEAD BY EXPLOSION...\n");
+		end_game(data, "\nYOU EXPLODED...\n");
+}
+
+static void player_dead(t_data *data)
+{
+	int i = 0;
+
+	while(data->pos_monster[i])
+	{
+		dead(data, data->pos_monster[i]);
+		i++;
+	}
 }
 
 static void	monster(t_data *data)
 {
 	static unsigned int	frame;
-	int					*pos;
 
-	pos = find_position(data, 'M');
 	if (frame % 15 == 0)
 		data->data_sprite.monster_current = data->data_sprite.monster1;
 	else if (frame % 15 == 1)
@@ -53,17 +62,17 @@ static void	monster(t_data *data)
 	else if (frame % 15 == 11)
 	{
 		data->data_sprite.monster_current = data->data_sprite.boom2;
-		player_dead(data, pos);
+		player_dead(data);
 	}
 	else if (frame % 15 == 12)
 	{
 		data->data_sprite.monster_current = data->data_sprite.boom3;
-		player_dead(data, pos);
+		player_dead(data);
 	}
 	else if (frame % 15 == 13)
 	{
 		data->data_sprite.monster_current = data->data_sprite.boom4;
-		player_dead(data, pos);
+		player_dead(data);
 	}
 	else if (frame % 15 == 14)
 		data->data_sprite.monster_current = data->data_sprite.boom5;
@@ -101,7 +110,7 @@ int	animation(t_data *data)
 	static unsigned int frame;
 	if (frame % 5 == 0)
 		coin(data);
-	if (frame % 7 == 0)
+	if (frame % 5 == 0)
 		monster(data);
 	frame++;
 	map_display(data->mlx, data->window, data->data_sprite, data->map);

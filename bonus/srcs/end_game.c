@@ -6,7 +6,7 @@
 /*   By: mvan-pee <mvan-pee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 10:32:54 by mvan-pee          #+#    #+#             */
-/*   Updated: 2023/12/01 15:20:30 by mvan-pee         ###   ########.fr       */
+/*   Updated: 2023/12/04 14:27:36 by mvan-pee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ int	end_game(t_data *data, char *message)
 		mlx_destroy_image(data->mlx, data->data_sprite.exit_close);
 	if (data->data_sprite.monster_current)
 		mlx_destroy_image(data->mlx, data->data_sprite.monster_current);
-	ft_free_split(data->map);
+	ft_free_split((char **)data->map);
+	ft_free_split((int **)data->pos_monster);
 	mlx_destroy_window(data->mlx, data->window);
 	exit(EXIT_SUCCESS);
 }
