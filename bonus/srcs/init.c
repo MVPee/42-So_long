@@ -6,7 +6,7 @@
 /*   By: mvan-pee <mvan-pee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 10:10:07 by mvan-pee          #+#    #+#             */
-/*   Updated: 2023/12/04 13:48:27 by mvan-pee         ###   ########.fr       */
+/*   Updated: 2023/12/06 15:48:32 by mvan-pee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ void	sprite_init(void *mlx, t_sprite *sprite)
 	sprite->monster9 = mlx_xpm_file_to_image(mlx, "rscs/monster9.xpm", &img_width, \
 		&img_height);
 	sprite->monster_current = sprite->monster1;
+	sprite->monster_current1 = sprite->monster1;
 	sprite->boom1 = mlx_xpm_file_to_image(mlx, "rscs/boom1.xpm", &img_width, \
 		&img_height);
 	sprite->boom2 = mlx_xpm_file_to_image(mlx, "rscs/boom2.xpm", &img_width, \

@@ -6,7 +6,7 @@
 /*   By: mvan-pee <mvan-pee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 14:35:11 by mvan-pee          #+#    #+#             */
-/*   Updated: 2023/12/01 15:20:10 by mvan-pee         ###   ########.fr       */
+/*   Updated: 2023/12/06 15:51:25 by mvan-pee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ void	map_display(void *m, void *w, t_sprite sprite, char **map_split)
 				mlx_put_image_to_window(m, w, sprite.exit_current, 100 * x, 100 * y);
 			else if (map_split[y][x] == 'M')
 				mlx_put_image_to_window(m, w, sprite.monster_current, 100 * x, 100 * y);
+			else if (map_split[y][x] == 'B')
+				mlx_put_image_to_window(m, w, sprite.monster_current1, 100 * x, 100 * y);
 			x++;
 		}
 		x = 0;

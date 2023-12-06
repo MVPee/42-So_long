@@ -6,7 +6,7 @@
 /*   By: mvan-pee <mvan-pee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:20:15 by mvan-pee          #+#    #+#             */
-/*   Updated: 2023/12/04 13:50:19 by mvan-pee         ###   ########.fr       */
+/*   Updated: 2023/12/06 15:51:01 by mvan-pee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ typedef struct s_sprite
 	void		*exit_open;
 	void		*exit_close;
 	void		*monster_current;
+	void		*monster_current1;
 	void		*monster1;
 	void		*monster2;
 	void		*monster3;
@@ -81,6 +82,7 @@ typedef struct s_data
 	int			coin;
 	int			movement;
 	int			**pos_monster;
+	int			**pos_monster1;
 	void		*mlx;
 	void		*window;
 	t_sprite	data_sprite;

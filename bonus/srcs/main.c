@@ -6,7 +6,7 @@
 /*   By: mvan-pee <mvan-pee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:19:32 by mvan-pee          #+#    #+#             */
-/*   Updated: 2023/12/04 14:26:12 by mvan-pee         ###   ########.fr       */
+/*   Updated: 2023/12/06 15:50:40 by mvan-pee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ static int	mlx_start(t_game game, char **map_split)
 	}
 	data.data_sprite = sprite;
 	data.pos_monster = find_all_position(&data, 'M');
+	data.pos_monster1 = find_all_position(&data, 'B');
 	mlx_hook(data.window, 2, 1L << 0, game_process, &data);
 	mlx_hook(data.window, 17, 1L << 2, end_game, &data);
 	mlx_loop_hook(data.mlx, animation, &data);
