@@ -17,7 +17,7 @@ SRCS = 	srcs/main.c \
 
 OBJS = $(SRCS:.c=.o)
 
-CFLAGS = -I$(LIBFT) -Wall -Werror -Wextra
+CFLAGS = -I$(LIBFT) -Wall -Werror -Wextra 
 LDFLAGS = -L$(LIBFT) -lft -lmlx -framework OpenGL -framework AppKit
 # LDFLAGS = -L$(LIBFT) -lft -lmlx -lXext -lX11 -lm
 SANITIZE = -fsanitize=address -g

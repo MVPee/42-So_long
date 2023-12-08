@@ -6,11 +6,40 @@
 /*   By: mvan-pee <mvan-pee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 10:05:25 by mvan-pee          #+#    #+#             */
-/*   Updated: 2023/12/08 10:08:42 by mvan-pee         ###   ########.fr       */
+/*   Updated: 2023/12/08 18:32:38 by mvan-pee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
+
+static int	check_exit(char **map)
+{
+	int	x;
+	int	y;
+
+	y = 0;
+	while (map[y])
+	{
+		x = 0;
+		while (map[y][x])
+		{
+			if (map[y][x] == 'E')
+			{
+				if (map[y + 1][x] == 'P')
+					return (0);
+				if (map[y - 1][x] == 'P')
+					return (0);
+				if (map[y][x + 1] == 'P')
+					return (0);
+				if (map[y][x - 1] == 'P')
+					return (0);
+			}
+			x++;
+		}
+		y++;
+	}
+	return (1);
+}
 
 static int	check_for_destination(char **map)
 {
@@ -24,7 +53,7 @@ static int	check_for_destination(char **map)
 		x = 0;
 		while (map[y][x])
 		{
-			if (map[y][x] == 'C' || map[y][x] == 'E')
+			if (map[y][x] == 'C')
 			{
 				ft_free_split(1, &map);
 				return (ft_printf_fd(2, "Error\nMap is impossible.\n"));
@@ -33,30 +62,31 @@ static int	check_for_destination(char **map)
 		}
 		y++;
 	}
-	ft_free_split(1, &map);
-	return (0);
+	if (check_exit(map))
+		return (ft_free_split(1, &map), 1);
+	return (ft_free_split(1, &map), 0);
 }
 
 static void	process_path_check(char **map, int x, int y, int *flag)
 {
 	if (map[y][x] == 'P' && (y > 0 && x > 0))
 	{
-		if (ft_ischarin(map[y - 1][x], "0EC"))
+		if (ft_ischarin(map[y - 1][x], "0C"))
 		{
 			map[y - 1][x] = 'P';
 			*flag = 1;
 		}
-		if (ft_ischarin(map[y + 1][x], "0EC"))
+		if (ft_ischarin(map[y + 1][x], "0C"))
 		{
 			map[y + 1][x] = 'P';
 			*flag = 1;
 		}
-		if (ft_ischarin(map[y][x - 1], "0EC"))
+		if (ft_ischarin(map[y][x - 1], "0C"))
 		{
 			map[y][x - 1] = 'P';
 			*flag = 1;
 		}
-		if (ft_ischarin(map[y][x + 1], "0EC"))
+		if (ft_ischarin(map[y][x + 1], "0C"))
 		{
 			map[y][x + 1] = 'P';
 			*flag = 1;
