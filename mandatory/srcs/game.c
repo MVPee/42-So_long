@@ -6,7 +6,7 @@
 /*   By: mvan-pee <mvan-pee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 10:21:35 by mvan-pee          #+#    #+#             */
-/*   Updated: 2023/11/29 10:58:52 by mvan-pee         ###   ########.fr       */
+/*   Updated: 2023/12/08 11:52:29 by mvan-pee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int	*player_position(t_data *data)
 		}
 		pos[0]++;
 	}
-	ft_free(pos);
+	ft_free(1, &pos);
 	return (NULL);
 }
 
@@ -60,11 +60,11 @@ static int	movement(t_data *data, int y, int x)
 	{
 		if (data->collected == data->coin)
 		{
-			ft_free(pos);
+			ft_free(1, &pos);
 			end_game(data, "\nSUCCES");
 		}
 	}
-	ft_free(pos);
+	ft_free(1, &pos);
 	return (1);
 }
 

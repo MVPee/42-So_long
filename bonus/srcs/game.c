@@ -6,7 +6,7 @@
 /*   By: mvan-pee <mvan-pee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 10:21:35 by mvan-pee          #+#    #+#             */
-/*   Updated: 2023/12/04 14:59:58 by mvan-pee         ###   ########.fr       */
+/*   Updated: 2023/12/08 14:04:01 by mvan-pee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,14 @@ static void	sprite_switch(t_data *data, char type, char *path)
 	{
 		if (data->data_sprite.player)
 			mlx_destroy_image(data->mlx, data->data_sprite.player);
-		data->data_sprite.player = mlx_xpm_file_to_image(data->mlx, path,
+		data->data_sprite.player = mlx_xpm_file_to_image(data->mlx, path, \
 			&img_width, &img_height);
 	}
 	else if (type == 'E')
 	{
-		data->data_sprite.exit_current = data->data_sprite.exit_open;
+		data->data_sprite.exit_ptr = data->data_sprite.exit_open;
 	}
-	if (!data->data_sprite.player || !data->data_sprite.exit_current)
+	if (!data->data_sprite.player || !data->data_sprite.exit_ptr)
 		end_game(data, "Error\nSprites fail.\n");
 }
 
@@ -45,11 +45,6 @@ static int	movement(t_data *d, int y, int x)
 	p = find_position(d, 'P');
 	if (d->map[p[0] + y][p[1] + x] && d->map[p[0] + y][p[1] + x] == '0')
 		move_player(d, y, x, p);
-	else if (d->map[p[0] + y][p[1] + x] && d->map[p[0] + y][p[1] + x] == 'M')
-	{
-		ft_free(p);
-		end_game(d, "\nYOU DEAD...\n");
-	}
 	else if (d->map[p[0] + y][p[1] + x] && d->map[p[0] + y][p[1] + x] == 'C')
 	{
 		move_player(d, y, x, p);
@@ -61,11 +56,11 @@ static int	movement(t_data *d, int y, int x)
 	{
 		if (d->collected == d->coin)
 		{
-			ft_free(p);
+			ft_free(1, &p);
 			end_game(d, "\nSUCCES\n");
 		}
 	}
-	ft_free(p);
+	ft_free(1, &p);
 	return (1);
 }
 

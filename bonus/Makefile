@@ -17,9 +17,10 @@ SRCS = 	srcs/main.c \
 
 OBJS = $(SRCS:.c=.o)
 
-CFLAGS = -I$(LIBFT)
+CFLAGS = -I$(LIBFT) -Wall -Werror -Wextra
 LDFLAGS = -L$(LIBFT) -lft -lmlx -framework OpenGL -framework AppKit
 # LDFLAGS = -L$(LIBFT) -lft -lmlx -lXext -lX11 -lm
+SANITIZE = -fsanitize=address -g
 
 $(LIBFT)/libft.a:
 	$(MAKE) -C $(LIBFT)
@@ -41,5 +42,9 @@ fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
+
+test: fclean
+	gcc $(SRCS) $(CFLAGS) $(LDFLAGS) $(SANITIZE) -o $(NAME)
+	./$(NAME)
 
 .PHONY: all clean fclean re

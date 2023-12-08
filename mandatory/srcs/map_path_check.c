@@ -6,7 +6,7 @@
 /*   By: mvan-pee <mvan-pee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 10:05:25 by mvan-pee          #+#    #+#             */
-/*   Updated: 2023/11/29 10:53:17 by mvan-pee         ###   ########.fr       */
+/*   Updated: 2023/12/08 11:58:15 by mvan-pee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,14 @@ static int	check_for_destination(char **map)
 		{
 			if (map[y][x] == 'C' || map[y][x] == 'E')
 			{
-				ft_free_split(map);
+				ft_free_split(1, &map);
 				return (ft_printf_fd(2, "Error\nMap is impossible.\n"));
 			}
 			x++;
 		}
 		y++;
 	}
-	ft_free_split(map);
+	ft_free_split(1, &map);
 	return (0);
 }
 

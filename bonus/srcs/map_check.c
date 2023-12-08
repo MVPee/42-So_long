@@ -6,7 +6,7 @@
 /*   By: mvan-pee <mvan-pee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 08:24:33 by mvan-pee          #+#    #+#             */
-/*   Updated: 2023/12/06 15:55:27 by mvan-pee         ###   ########.fr       */
+/*   Updated: 2023/12/08 12:08:32 by mvan-pee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static int	map_item_check(char *line, t_game *game)
 		else if (line[i] == 'E')
 			game->exit += 1;
 		else if (line[i] != '1' && line[i] != '0' && line[i] != '\n' && \
-			line[i] != 'M' && line[i] != 'B')
+			line[i] != 'M')
 			return (ft_printf_fd(2, "Error\nInvalid character. C %d\n", i + 1));
 		i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: mvan-pee <mvan-pee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:19:32 by mvan-pee          #+#    #+#             */
-/*   Updated: 2023/11/29 10:52:48 by mvan-pee         ###   ########.fr       */
+/*   Updated: 2023/12/08 11:52:16 by mvan-pee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,15 +48,15 @@ int	main(int ac, char **av)
 	temp = ft_read(open(av[1], O_RDONLY));
 	if (!temp)
 		return (1);
-	map_split = ft_split(temp, '\n');
-	ft_free(temp);
+	map_split = ft_split(temp, "\n");
+	ft_free(1, &temp);
 	if (!map_split)
 		return (ft_printf_fd(2, "Error\nSplit error.\n"));
 	game_init(&game);
 	dup = ft_splitdup((const char **)map_split);
 	if (map_check(map_split, &game) || map_path_check(dup))
 	{
-		ft_free_split(map_split);
+		ft_free_split(1, &map_split);
 		return (1);
 	}
 	mlx_start(game, map_split);

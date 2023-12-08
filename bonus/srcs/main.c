@@ -6,7 +6,7 @@
 /*   By: mvan-pee <mvan-pee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:19:32 by mvan-pee          #+#    #+#             */
-/*   Updated: 2023/12/06 15:50:40 by mvan-pee         ###   ########.fr       */
+/*   Updated: 2023/12/08 15:25:37 by mvan-pee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,16 @@ static int	mlx_start(t_game game, char **map_split)
 		return (ft_printf_fd(2, "Error\nMap too big.\n"));
 	data_init(&data, game, map_split);
 	sprite_init(data.mlx, &sprite);
-	if (!sprite.coin_current || !sprite.wall || !sprite.ground || !sprite.player
-		|| !sprite.exit_current || !sprite.monster_current)
+	sprite_monster(data.mlx, &sprite);
+	sprite_coin(data.mlx, &sprite);
+	if (!sprite.coin_ptr || !sprite.wall || !sprite.ground || !sprite.player
+		|| !sprite.exit_ptr || !sprite.monster_ptr)
 	{
 		mlx_destroy_window(data.mlx, data.window);
 		return (ft_printf_fd(2, "Error\nSprites fail.\n"));
 	}
 	data.data_sprite = sprite;
 	data.pos_monster = find_all_position(&data, 'M');
-	data.pos_monster1 = find_all_position(&data, 'B');
 	mlx_hook(data.window, 2, 1L << 0, game_process, &data);
 	mlx_hook(data.window, 17, 1L << 2, end_game, &data);
 	mlx_loop_hook(data.mlx, animation, &data);
@@ -50,15 +51,15 @@ int	main(int ac, char **av)
 	temp = ft_read(open(av[1], O_RDONLY));
 	if (!temp)
 		return (1);
-	map_split = ft_split(temp, '\n');
-	ft_free(temp);
+	map_split = ft_split(temp, "\n");
+	ft_free(1, &temp);
 	if (!map_split)
 		return (ft_printf_fd(2, "Error\nSplit error.\n"));
 	game_init(&game);
 	dup = ft_splitdup((const char **)map_split);
 	if (map_check(map_split, &game) || map_path_check(dup))
 	{
-		ft_free_split((char **)map_split);
+		ft_free_split(1, &map_split);
 		return (1);
 	}
 	mlx_start(game, map_split);
