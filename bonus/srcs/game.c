@@ -6,7 +6,7 @@
 /*   By: mvan-pee <mvan-pee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 10:21:35 by mvan-pee          #+#    #+#             */
-/*   Updated: 2023/12/08 14:04:01 by mvan-pee         ###   ########.fr       */
+/*   Updated: 2023/12/08 16:20:59 by mvan-pee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,7 @@ static void	sprite_switch(t_data *data, char type, char *path)
 			&img_width, &img_height);
 	}
 	else if (type == 'E')
-	{
 		data->data_sprite.exit_ptr = data->data_sprite.exit_open;
-	}
 	if (!data->data_sprite.player || !data->data_sprite.exit_ptr)
 		end_game(data, "Error\nSprites fail.\n");
 }

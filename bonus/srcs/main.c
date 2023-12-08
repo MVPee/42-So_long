@@ -6,11 +6,23 @@
 /*   By: mvan-pee <mvan-pee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:19:32 by mvan-pee          #+#    #+#             */
-/*   Updated: 2023/12/08 15:25:37 by mvan-pee         ###   ########.fr       */
+/*   Updated: 2023/12/08 15:40:47 by mvan-pee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
+
+static int	check_sprite(t_sprite sprite)
+{
+	return (!sprite.wall || !sprite.ground || !sprite.player
+		|| !sprite.exit_open || !sprite.exit_close || !sprite.boom1
+		|| !sprite.boom2 || !sprite.boom3 || !sprite.boom4 || !sprite.boom5
+		|| !sprite.monster1 || !sprite.monster2 || !sprite.monster3
+		|| !sprite.monster4 || !sprite.monster5 || !sprite.monster6
+		|| !sprite.monster7 || !sprite.monster8 || !sprite.monster9
+		|| !sprite.coin1 || !sprite.coin2 || !sprite.coin3 || !sprite.coin4
+		|| !sprite.coin5);
+}
 
 static int	mlx_start(t_game game, char **map_split)
 {
@@ -24,8 +36,7 @@ static int	mlx_start(t_game game, char **map_split)
 	sprite_init(data.mlx, &sprite);
 	sprite_monster(data.mlx, &sprite);
 	sprite_coin(data.mlx, &sprite);
-	if (!sprite.coin_ptr || !sprite.wall || !sprite.ground || !sprite.player
-		|| !sprite.exit_ptr || !sprite.monster_ptr)
+	if (check_sprite(sprite))
 	{
 		mlx_destroy_window(data.mlx, data.window);
 		return (ft_printf_fd(2, "Error\nSprites fail.\n"));
