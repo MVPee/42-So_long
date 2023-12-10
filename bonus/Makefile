@@ -1,9 +1,6 @@
 NAME = so_long
 
 LIBFT = ../libft
-# MLX_PATH = ../../minilibx
-# MLX = $(MLX_PATH)
-# MLX_INC = $(MLX_PATH)
 
 SRCS = 	srcs/main.c \
 		srcs/game.c \
@@ -20,7 +17,8 @@ OBJS = $(SRCS:.c=.o)
 CFLAGS = -I$(LIBFT) -Wall -Werror -Wextra 
 LDFLAGS = -L$(LIBFT) -lft -lmlx -framework OpenGL -framework AppKit
 # LDFLAGS = -L$(LIBFT) -lft -lmlx -lXext -lX11 -lm
-SANITIZE = -fsanitize=address -g
+
+all: $(NAME)
 
 $(LIBFT)/libft.a:
 	$(MAKE) -C $(LIBFT)
@@ -30,8 +28,6 @@ $(NAME): $(OBJS) $(LIBFT)/libft.a
 
 %.o: %.c
 	gcc $(CFLAGS) -c $< -o $@
-
-all: $(NAME)
 
 clean:
 	$(MAKE) -C $(LIBFT) clean
@@ -43,8 +39,7 @@ fclean: clean
 
 re: fclean all
 
-test: fclean
-	gcc $(SRCS) $(CFLAGS) $(LDFLAGS) $(SANITIZE) -o $(NAME)
-	./$(NAME)
+run: all
+	./so_long maps/defi.ber
 
 .PHONY: all clean fclean re
