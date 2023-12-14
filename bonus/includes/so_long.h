@@ -16,19 +16,21 @@
 # include <limits.h>
 # include <mlx.h>
 
-// Linux
-// # define W 119
-// # define A 97
-// # define D 100
-// # define S 115
-// # define ESC 65307
+#ifdef __APPLE__
+    #define W 13
+    #define A 0
+    #define D 2
+    #define S 1
+    #define ESC 53
 
-// MacOs
-# define W 13
-# define A 0
-# define D 2
-# define S 1
-# define ESC 53
+//linux
+#else
+    #define W 119
+    #define A 97
+    #define D 100
+    #define S 115
+    #define ESC 65307
+#endif
 
 # define UP 126
 # define DOWN 125
