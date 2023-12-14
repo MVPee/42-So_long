@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   find_position.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvan-pee <mvan-pee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvpee <mvpee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 12:04:46 by mvan-pee          #+#    #+#             */
-/*   Updated: 2023/12/08 15:25:35 by mvan-pee         ###   ########.fr       */
+/*   Updated: 2023/12/14 17:00:06 by mvpee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static void	fill_positions(t_data *data, int **pos, int *y, int *i)
 				pos[*i] = (int *)malloc(sizeof(int) * 2);
 				if (!pos[*i])
 				{
-					ft_free_split(1, &pos);
+					ft_free_matrix(1, &pos);
 					end_game(data, "Error\nMalloc fail.\n");
 				}
 				pos[*i][0] = *y;

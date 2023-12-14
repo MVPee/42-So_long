@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_path_check.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvan-pee <mvan-pee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvpee <mvpee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 10:05:25 by mvan-pee          #+#    #+#             */
-/*   Updated: 2023/12/08 18:32:38 by mvan-pee         ###   ########.fr       */
+/*   Updated: 2023/12/14 17:00:06 by mvpee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static int	check_for_destination(char **map)
 		{
 			if (map[y][x] == 'C')
 			{
-				ft_free_split(1, &map);
+				ft_free_matrix(1, &map);
 				return (ft_printf_fd(2, "Error\nMap is impossible.\n"));
 			}
 			x++;
@@ -63,8 +63,8 @@ static int	check_for_destination(char **map)
 		y++;
 	}
 	if (check_exit(map))
-		return (ft_free_split(1, &map), 1);
-	return (ft_free_split(1, &map), 0);
+		return (ft_free_matrix(1, &map), 1);
+	return (ft_free_matrix(1, &map), 0);
 }
 
 static void	process_path_check(char **map, int x, int y, int *flag)
