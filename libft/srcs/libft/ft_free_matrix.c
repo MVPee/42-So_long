@@ -12,7 +12,7 @@
 
 #include "../../includes/libft.h"
 
-void	ft_free_split(unsigned int count, ...)
+void	ft_free_matrix(unsigned int count, ...)
 {
 	va_list	args;
 	void	***array;

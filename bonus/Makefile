@@ -15,8 +15,13 @@ SRCS = 	srcs/main.c \
 OBJS = $(SRCS:.c=.o)
 
 CFLAGS = -I$(LIBFT) -Wall -Werror -Wextra 
-LDFLAGS = -L$(LIBFT) -lft -lmlx -framework OpenGL -framework AppKit
-# LDFLAGS = -L$(LIBFT) -lft -lmlx -lXext -lX11 -lm
+
+UNAME_S := $(shell uname -s)
+ifeq ($(UNAME_S), Linux)
+    LDFLAGS = -L$(LIBFT) -lft -lmlx -lXext -lX11 -lm
+else
+    LDFLAGS = -L$(LIBFT) -lft -lmlx -framework OpenGL -framework AppKit
+endif
 
 all: $(NAME)
 
